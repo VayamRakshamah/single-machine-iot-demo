@@ -1,0 +1,25 @@
+server:
+  port: 8082
+spring:
+  application.name: edge-gateway
+management:
+  endpoints.web.exposure.include: health,info,prometheus,metrics
+  endpoint.health.show-details: always
+gateway:
+  plc-host: ${PLC_HOST:localhost}
+  plc-port: ${PLC_PORT:1502}
+  plc-unit-id: ${PLC_UNIT_ID:1}
+  poll-interval-ms: ${POLL_INTERVAL_MS:1000}
+  mqtt-broker-uri: ${MQTT_BROKER_URI:tcp://localhost:1883}
+  mqtt-topic: ${MQTT_TOPIC:factory/demo/plant-001/machine/DOCS-DEMO-001/telemetry}
+  gateway-id: ${GATEWAY_ID:GATEWAY-DEMO-001}
+  plant-id: ${PLANT_ID:PLANT-001}
+  machine-id: ${MACHINE_ID:DOCS-DEMO-001}
+  buffer-path: ${EDGE_BUFFER_PATH:./data/edge-buffer.db}
+  mqtt-username: ${MQTT_USERNAME:}
+  mqtt-password: ${MQTT_PASSWORD:}
+  mqtt-tls: ${MQTT_TLS:false}
+  mqtt-ca-path: ${MQTT_CA_PATH:}
+  mqtt-certificate-path: ${MQTT_CERTIFICATE_PATH:}
+  mqtt-private-key-path: ${MQTT_PRIVATE_KEY_PATH:}
+
