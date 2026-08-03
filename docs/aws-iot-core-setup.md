@@ -14,4 +14,4 @@ AWS is not required for local mode. Charges and organizational security policies
 5. Mount certificate files read-only into the edge container via a local Compose override. Never copy them into an image or Git.
 6. Subscribe with the AWS IoT MQTT test client to `factory/demo/plant-001/machine/DOCS-DEMO-001/#`, start the gateway, and verify messages.
 
-The configuration surface reserves TLS paths. Before AWS use, the Paho client must construct a mutually authenticated `SSLSocketFactory`, validate the hostname and CA, and implement certificate rotation. Local Mosquitto is the fully implemented default mode.
+The gateway loads PEM CA, device certificate, and PKCS#1 or PKCS#8 private keys into a mutually authenticated TLS 1.2 socket factory and enables hostname verification. Certificate issuance, rotation, revocation, and fleet provisioning remain deployment responsibilities. Local Mosquitto is always the default mode.

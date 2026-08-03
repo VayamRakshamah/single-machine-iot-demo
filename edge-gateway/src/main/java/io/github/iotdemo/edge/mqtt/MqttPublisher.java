@@ -22,9 +22,17 @@ public class MqttPublisher {
 
     private void ensureConnected() throws MqttException {
         if (connected()) return;
+        if (client != null) {
+            try { client.close(true); } catch (MqttException ignored) { }
+        }
         client = new MqttAsyncClient(properties.mqttBrokerUri(), properties.gatewayId(), new MemoryPersistence());
         MqttConnectOptions options = new MqttConnectOptions();
         options.setAutomaticReconnect(true); options.setCleanSession(false); options.setConnectionTimeout(3);
+        if (properties.mqttTls()) {
+            options.setSocketFactory(TlsSocketFactory.create(properties.mqttCaPath(),
+                    properties.mqttCertificatePath(), properties.mqttPrivateKeyPath()));
+            options.setHttpsHostnameVerificationEnabled(true);
+        }
         if (properties.mqttUsername() != null && !properties.mqttUsername().isBlank()) {
             options.setUserName(properties.mqttUsername());
             options.setPassword(properties.mqttPassword().toCharArray());
@@ -35,4 +43,3 @@ public class MqttPublisher {
     @PreDestroy
     void close() throws MqttException { if (connected()) client.disconnect(); }
 }
-

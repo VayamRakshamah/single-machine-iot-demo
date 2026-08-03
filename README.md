@@ -31,7 +31,7 @@ Open <http://localhost:3000>. OpenAPI is at <http://localhost:8080/swagger-ui.ht
 | PLC scenario API | 8081 | HTTP |
 | PLC | 1502 | Modbus TCP |
 | MQTT | 1883 | MQTT |
-| PostgreSQL | 5432 | PostgreSQL |
+| PostgreSQL | 5433 | PostgreSQL (container port 5432) |
 
 ## Telemetry flow
 
@@ -72,7 +72,7 @@ Local operation requires no cloud account. The [AWS IoT Core guide](docs/aws-iot
 ## Troubleshooting
 
 - If the dashboard says data is unavailable, wait for backend and edge health checks, then inspect `docker compose ps` and `docker compose logs SERVICE`.
-- If port 1502, 1883, 3000, 5432, 8080, 8081, or 8082 is occupied, stop the conflicting local service or change the host-side mapping.
+- If port 1502, 1883, 3000, 5433, 8080, 8081, or 8082 is occupied, stop the conflicting local service or change the host-side mapping.
 - If alarms do not appear, keep the abnormal scenario selected for more than ten seconds.
 - If telemetry does not resume after an outage, confirm Mosquitto is healthy and inspect `http://localhost:8082/actuator/prometheus`.
 
