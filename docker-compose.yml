@@ -53,6 +53,8 @@ services:
       EDGE_BUFFER_PATH: /data/edge-buffer.db
     volumes:
       - edge-data:/data
+    ports:
+      - "8082:8082"
     depends_on:
       plc-simulator:
         condition: service_healthy
@@ -106,4 +108,3 @@ volumes:
   postgres-data:
   mosquitto-data:
   edge-data:
-

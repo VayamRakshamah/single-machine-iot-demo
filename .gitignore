@@ -5,6 +5,9 @@
 **/target/
 **/node_modules/
 **/dist/
+**/*.tsbuildinfo
+frontend/vite.config.js
+frontend/vite.config.d.ts
 **/__pycache__/
 **/.pytest_cache/
 **/.coverage
@@ -16,4 +19,3 @@ infrastructure/mosquitto/certs/*
 !infrastructure/mosquitto/certs/.gitkeep
 playwright-report/
 test-results/
-

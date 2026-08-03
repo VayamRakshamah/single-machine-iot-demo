@@ -1,0 +1,15 @@
+name: Bug report
+description: Report reproducible demo behavior
+title: "[Bug]: "
+body:
+  - type: textarea
+    id: description
+    attributes: {label: Description}
+    validations: {required: true}
+  - type: textarea
+    id: reproduce
+    attributes: {label: Steps to reproduce}
+    validations: {required: true}
+  - type: textarea
+    id: logs
+    attributes: {label: Sanitized logs, description: Never include secrets or plant data.}
