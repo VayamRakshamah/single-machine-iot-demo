@@ -1,0 +1,22 @@
+spring:
+  application.name: iot-backend
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/iotdemo}
+    username: ${SPRING_DATASOURCE_USERNAME:iotdemo}
+    password: ${SPRING_DATASOURCE_PASSWORD:iotdemo-local}
+  jpa:
+    open-in-view: false
+    hibernate.ddl-auto: validate
+    properties.hibernate.jdbc.time_zone: UTC
+  flyway.enabled: true
+management:
+  endpoints.web.exposure.include: health,info,prometheus,metrics
+  endpoint.health.show-details: always
+  metrics.tags.application: iot-backend
+springdoc.swagger-ui.path: /swagger-ui.html
+iot:
+  mqtt-broker-uri: ${MQTT_BROKER_URI:tcp://localhost:1883}
+  mqtt-topic: ${MQTT_TOPIC:factory/demo/plant-001/machine/+/telemetry}
+  allowed-origins: ${ALLOWED_ORIGINS:http://localhost:3000}
+  plc-scenario-url: ${PLC_SCENARIO_URL:http://localhost:8081}
+
