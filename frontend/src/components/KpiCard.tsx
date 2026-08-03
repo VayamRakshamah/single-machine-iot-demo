@@ -1,0 +1,2 @@
+import type {ReactNode} from 'react';export function KpiCard({label,value,unit,status='normal'}:{label:string;value:ReactNode;unit?:string;status?:'normal'|'warning'|'critical'}){return <div className={`panel border-l-4 ${status==='critical'?'border-l-red-500':status==='warning'?'border-l-amber-500':'border-l-teal-500'}`}><p className="label">{label}</p><p className="mt-2 text-2xl font-bold tabular-nums">{value} <span className="text-sm font-normal text-slate-500">{unit}</span></p></div>}
+

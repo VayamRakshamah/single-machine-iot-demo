@@ -1,0 +1,3 @@
+import{useQuery}from'@tanstack/react-query';import{api}from'../api';import{ProcessDiagram}from'../components/ProcessDiagram';import{TelemetryCharts}from'../components/TelemetryCharts';import{useMachine}from'../hooks';
+export function MachineDetails(){const machine=useMachine();const from=new Date(Date.now()-15*60_000).toISOString();const history=useQuery({queryKey:['history','15m'],queryFn:()=>api.history(from),refetchInterval:30000});return <><h1 className="mb-6 text-3xl font-bold">Machine details</h1>{machine.data&&<ProcessDiagram running={machine.data.values.running} warning={machine.data.values.alarmCode!=='NONE'}/>}<div className="mt-4">{history.isLoading?<p>Loading charts…</p>:<TelemetryCharts rows={history.data??[]}/>}</div></>}
+
